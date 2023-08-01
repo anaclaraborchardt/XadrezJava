@@ -4,8 +4,8 @@ public class Peao extends Peca{
 
     private boolean primeiroMovimento = true;
 
-    public Peao(String cor) {
-        super(cor);
+    public Peao(String cor, Posicao posicao) {
+        super(cor, posicao);
     }
 
     @Override

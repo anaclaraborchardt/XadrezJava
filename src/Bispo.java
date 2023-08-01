@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Bispo extends Peca{
 
-    public Bispo(String cor) {
-        super(cor);
+    public Bispo(String cor, Posicao posicao) {
+        super(cor, posicao);
     }
 
     @Override

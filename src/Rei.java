@@ -4,8 +4,8 @@ public class Rei extends Peca{
 
     private boolean primeiroMovimento;
 
-    public Rei(String cor) {
-        super(cor);
+    public Rei(String cor, Posicao posicao) {
+        super(cor, posicao);
     }
 
     @Override

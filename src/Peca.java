@@ -4,8 +4,10 @@ public abstract class Peca {
     private String cor;
     private Posicao posicao;
 
-    public Peca(String cor) {
+    public Peca(String cor, Posicao posicao) {
+
         this.cor = cor;
+        this.posicao = posicao;
     }
 
     public boolean mover(Tabuleiro tabuleiro, Posicao posicao) {
