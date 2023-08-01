@@ -90,4 +90,9 @@ public class Rainha extends Peca {
     public String toString() {
         return "Rainha " + super.toString();
     }
+
+    @Override
+    public String getSimbolo() {
+        return "Q";
+    }
 }

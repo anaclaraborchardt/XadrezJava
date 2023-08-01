@@ -78,4 +78,9 @@ public class Peao extends Peca{
                 "primeiroMovimento=" + primeiroMovimento +
                 "} " + super.toString();
     }
+
+    @Override
+    public String getSimbolo() {
+        return "P";
+    }
 }

@@ -61,4 +61,8 @@ public class Torre extends Peca{
                 "primeiroMovimento=" + primeiroMovimento +
                 "} " + super.toString();
     }
+
+    public String getSimbolo(){
+        return "T";
+    }
 }

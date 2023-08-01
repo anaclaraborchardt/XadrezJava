@@ -16,6 +16,11 @@ public class Posicao {
 
     }
 
+    public boolean temPeca() {
+        return peca != null;
+    }
+
+
     @Override
     public String toString() {
         return "Posicao{" +

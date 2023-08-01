@@ -51,4 +51,9 @@ public class Rei extends Peca{
                 "primeiroMovimento=" + primeiroMovimento +
                 "} " + super.toString();
     }
+
+    @Override
+    public String getSimbolo() {
+        return "K";
+    }
 }

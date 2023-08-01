@@ -2,86 +2,70 @@ import java.util.ArrayList;
 
 public class Tabuleiro {
     private ArrayList<Posicao> listaPosicoes = new ArrayList<>();
+    Peca peca;
 
     public Tabuleiro() {
-        for(int i =0; i<64; i++) {
+        for (int i = 0; i < 64; i++) {
             listaPosicoes.add(new Posicao());
-            if(i>= 8 && 1<=15){
+            if (i >= 8 && i <= 15) {
                 listaPosicoes.get(i).setPeca(new Peao("Preto", listaPosicoes.get(i)));
-            }
-            if(i>= 48 && 1<=55){
+            } else if (i >= 48 && i <= 55) {
                 listaPosicoes.get(i).setPeca(new Peao("Branco", listaPosicoes.get(i)));
-            }
-            if(i == 0 || i == 7){
+            } else if (i == 0 || i == 7) {
                 listaPosicoes.get(i).setPeca(new Torre("Preto", listaPosicoes.get(i)));
-            }
-            if(i == 56 || i == 63){
+            } else if (i == 56 || i == 63) {
                 listaPosicoes.get(i).setPeca(new Torre("Branco", listaPosicoes.get(i)));
-            }
-            if(i == 1 || i == 6){
+            } else if (i == 1 || i == 6) {
                 listaPosicoes.get(i).setPeca(new Cavalo("Preto", listaPosicoes.get(i)));
-            }
-            if(i == 57 || i == 62){
+            } else if (i == 57 || i == 62) {
                 listaPosicoes.get(i).setPeca(new Cavalo("Branco", listaPosicoes.get(i)));
-            }
-            if(i == 2 || i == 5){
+            } else if (i == 2 || i == 5) {
                 listaPosicoes.get(i).setPeca(new Bispo("Preto", listaPosicoes.get(i)));
-            }
-            if(i == 58 || i == 61){
+            } else if (i == 58 || i == 61) {
                 listaPosicoes.get(i).setPeca(new Bispo("Branco", listaPosicoes.get(i)));
-            }
-            if(i == 3){
+            } else if (i == 3) {
                 listaPosicoes.get(i).setPeca(new Rainha("Preto", listaPosicoes.get(i)));
-            }
-            if(i == 59){
+            } else if (i == 59) {
                 listaPosicoes.get(i).setPeca(new Rainha("Branco", listaPosicoes.get(i)));
-            }
-            if(i == 4){
+            } else if (i == 4) {
                 listaPosicoes.get(i).setPeca(new Rei("Preto", listaPosicoes.get(i)));
-            }
-            if(i == 60){
+            } else if (i == 60) {
                 listaPosicoes.get(i).setPeca(new Rei("Branco", listaPosicoes.get(i)));
+            } else {
+                listaPosicoes.get(i).setPeca(null); // Definir como nulo caso nenhuma peça corresponda à posição
             }
         }
     }
-//    public void imprimirTabuleiro() {
-//        for (int i = 0; i < 8; i++) {
-//            for (int j = 0; j < 8; j++) {
-//                int indice = i * 8 + j;
-//                Posicao posicao = listaPosicoes.get(indice);
-//
-//                String pecaString = " ";
-//                    Peca peca = posicao.getPeca();
-//                    pecaString = obterSimboloPeca(peca);
-//
-//
-//                String corFundo = (i + j) % 2 == 0 ? "|" : "  ";
-//                System.out.print(corFundo + pecaString + corFundo);
-//            }
-//            System.out.println();
-//        }
-//    }
-//
-//    public String obterSimboloPeca(Peca peca) {
-//        if (peca instanceof Peao) {
-//            return "P";
-//        } else if (peca instanceof Torre) {
-//            return "T";
-//        } else if (peca instanceof Cavalo) {
-//            return "C";
-//        } else if (peca instanceof Bispo) {
-//            return "B";
-//        } else if (peca instanceof Rainha) {
-//            return "Q";
-//        } else if (peca instanceof Rei) {
-//            return "K";
-//        }
-//        return " ";
-//    }
+    public boolean imprimirTabuleiro() {
+        String numerosLinhas = "  + 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 +";
+        String linhaDivisoria = "  +---+---+---+---+---+---+---+---+";
 
+        System.out.println(numerosLinhas);
+        System.out.println(linhaDivisoria);
+
+        int rowIndex = 8;
+        for (int i = 0; i < 64; i += 8) {
+            System.out.print(rowIndex + " ");
+            for (int j = i; j < i + 8; j++) {
+                String pecaSimbolo = " ";
+                if (listaPosicoes.get(j).temPeca()) {
+                    pecaSimbolo = listaPosicoes.get(j).getPeca().getSimbolo();
+                }
+                System.out.print("| " + pecaSimbolo + " ");
+            }
+            System.out.println("|");
+            System.out.println(linhaDivisoria);
+            rowIndex--;
+        }
+        return false;
+    }
 
     public void removerPeca(Posicao posicao){
 
+    }
+
+    public ArrayList<Posicao> getPosicao(int escolhaPeca) {
+        return listaPosicoes;
     }
 
     public ArrayList<Posicao> getPosicao() {
@@ -93,5 +77,13 @@ public class Tabuleiro {
         return "Tabuleiro{" +
                 "listaPosicoes=" + listaPosicoes +
                 '}';
+    }
+
+    public Posicao getMovimento(int posicaoMover) {
+        if (posicaoMover >= 0 && posicaoMover < listaPosicoes.size()) {
+            return listaPosicoes.get(posicaoMover);
+        } else {
+            return null; // aqui ele retorna nulo caso não encontre a posição
+        }
     }
 }

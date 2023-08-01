@@ -65,4 +65,9 @@ public class Bispo extends Peca{
     public String toString() {
         return "Bispo" + super.toString();
     }
+
+    @Override
+    public String getSimbolo() {
+        return "B";
+    }
 }

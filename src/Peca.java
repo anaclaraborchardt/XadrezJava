@@ -61,7 +61,8 @@ public abstract class Peca {
     public String toString() {
         return "Peca{" +
                 "cor='" + cor + '\'' +
-                ", posicao=" + posicao +
                 '}';
     }
+
+    public abstract String getSimbolo();
 }

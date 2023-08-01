@@ -69,4 +69,9 @@ public class Cavalo extends Peca{
     public String toString() {
         return "Cavalo" + super.toString();
     }
+
+    @Override
+    public String getSimbolo() {
+        return "C";
+    }
 }
