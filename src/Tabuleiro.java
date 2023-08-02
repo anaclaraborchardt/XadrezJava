@@ -64,10 +64,6 @@ public class Tabuleiro {
 
     }
 
-    public ArrayList<Posicao> getPosicao(int escolhaPeca) {
-        return listaPosicoes;
-    }
-
     public ArrayList<Posicao> getPosicao() {
         return listaPosicoes;
     }
