@@ -75,11 +75,4 @@ public class Tabuleiro {
                 '}';
     }
 
-    public Posicao getMovimento(int posicaoMover) {
-        if (posicaoMover >= 0 && posicaoMover < listaPosicoes.size()) {
-            return listaPosicoes.get(posicaoMover);
-        } else {
-            return null; // aqui ele retorna nulo caso não encontre a posição
-        }
-    }
 }
