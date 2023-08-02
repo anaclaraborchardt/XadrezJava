@@ -7,6 +7,8 @@ public class Jogador {
     private String cor;
     private double pontos;
     private ArrayList<Peca>pecas ;
+    ArrayList<Peca> unidadesJogador1 = new ArrayList<>();
+    ArrayList<Peca> unidadesJogador2 = new ArrayList<>();
     private ArrayList<Integer> indicesValidosJogador1 = new ArrayList<>();
     private ArrayList<Integer> indicesValidosJogador2 = new ArrayList<>();
 
@@ -58,9 +60,11 @@ public class Jogador {
         return jogadorAtual == 1 ? indicesValidosJogador1 : indicesValidosJogador2;
     }
 
-    public void atualizaIndices(int jogadorAtual, int escolhaPeca, int escolhaPosicao) {
+    public void atualizaIndices(int jogadorAtual, int posicaoOrigem, int posicaoDestino) {
         ArrayList<Integer> indicesValidos = pegaIndice(jogadorAtual);
-        indicesValidos.remove(Integer.valueOf(escolhaPeca));
-        indicesValidos.add(escolhaPosicao);
+        indicesValidos.remove(Integer.valueOf(posicaoOrigem));
+        indicesValidos.add(posicaoDestino);
     }
+
+
 }

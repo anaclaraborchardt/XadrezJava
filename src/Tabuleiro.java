@@ -60,10 +60,6 @@ public class Tabuleiro {
         return false;
     }
 
-    public void removerPeca(Posicao posicao){
-
-    }
-
     public ArrayList<Posicao> getPosicao() {
         return listaPosicoes;
     }
