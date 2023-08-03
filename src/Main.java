@@ -3,6 +3,9 @@ import java.util.Scanner;
 
 public class Main {
 
+    static boolean vitoria = false;
+    static int jogador = 1;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Tabuleiro tabuleiro = new Tabuleiro();
@@ -17,6 +20,7 @@ public class Main {
 
         do {
             boolean pecaValida;
+
             if(jogadorAtual == jogador1){
                 System.out.println("Jogador 1: é sua vez!");
             }else{
@@ -29,7 +33,13 @@ public class Main {
                 System.out.println("Qual posição deseja mover? (Digite o índice da peça).");
                 int escolhaPeca = sc.nextInt();
                 peca = tabuleiro.getPosicao().get(escolhaPeca).getPeca();
-                System.out.println(peca);
+
+                if((escolhaPeca >= 8 && escolhaPeca <=15)||
+                        ((escolhaPeca >= 48 && escolhaPeca <=55))
+                && peca instanceof Peao){
+                    Peao peao = new Peao();
+                    peao.setPrimeiroMovimento(true);
+                }
 
                 if (jogadorAtual.getPecas().contains(peca)) {
                     pecaValida = true;
@@ -48,14 +58,16 @@ public class Main {
             }
 
             Posicao posicao;
-            Peca pecaEscolhida = null;
 
-                System.out.println("Digite para qual índice deseja ir");
+                System.out.println("Digite para qual posição deseja ir");
                 System.out.println(posicoesMover);
                 int escolhaPosicao = sc.nextInt();
-            posicao = listaPosicoes.get(escolhaPosicao);
-                pecaEscolhida = tabuleiro.getPosicao().get(escolhaPosicao).getPeca();
 
+                //verifica se o índice escolhido é válido
+                if(escolhaPosicao > (listaPosicoes.size()) - 1 ){
+                    System.out.println("Essa posição não é válida");
+                }else {
+                    posicao = listaPosicoes.get(escolhaPosicao);
 
                     ArrayList<Posicao> posicoes = peca.possiveisMovimentos(tabuleiro);
                     System.out.println(posicoes);
@@ -63,22 +75,39 @@ public class Main {
 
                     if (jogadorAtual == jogador1) {
                         jogadorAtual = jogador2;
+                        jogador = 1;
                     } else if (jogadorAtual == jogador2) {
                         jogadorAtual = jogador1;
+                        jogador = 2;
                     }
                     validarVitoria(jogadorAtual);
-        } while (true) ;
+                    mostraVencedor(jogadorAtual);
+                }
+        } while (!vitoria) ;
+        System.out.println("Jogo acabou");
 
     }
 
-    private static boolean validarVitoria(Jogador adversario){
-        for(Peca peca: adversario.getPecas()){
+    private static boolean validarVitoria(Jogador jogadorAtual){
+        for(Peca peca: jogadorAtual.getPecas()){
             if(peca instanceof Rei){
                 return false;
             }
         }
         return true;
     }
+
+    //precisa fazer xeque-mate
+    private static void mostraVencedor(Jogador jogadorAtual){
+        if(validarVitoria(jogadorAtual)== false){
+            System.out.println("Ainda não há vencedor!");
+            vitoria = false;
+        }else{
+            System.out.println("O vencedor é o jogador "+ jogador);
+            vitoria=true;
+        }
+    }
+
 
 }
 

@@ -7,10 +7,6 @@ public class Jogador {
     private String cor;
     private double pontos;
     private ArrayList<Peca>pecas ;
-    ArrayList<Peca> unidadesJogador1 = new ArrayList<>();
-    ArrayList<Peca> unidadesJogador2 = new ArrayList<>();
-    private ArrayList<Integer> indicesValidosJogador1 = new ArrayList<>();
-    private ArrayList<Integer> indicesValidosJogador2 = new ArrayList<>();
 
     public Jogador(String nome, String senha){
         this.nome = nome;
@@ -55,16 +51,5 @@ public class Jogador {
     public ArrayList<Peca> getPecas() {
         return pecas;
     }
-
-    public ArrayList<Integer> pegaIndice(int jogadorAtual) {
-        return jogadorAtual == 1 ? indicesValidosJogador1 : indicesValidosJogador2;
-    }
-
-    public void atualizaIndices(int jogadorAtual, int posicaoOrigem, int posicaoDestino) {
-        ArrayList<Integer> indicesValidos = pegaIndice(jogadorAtual);
-        indicesValidos.remove(Integer.valueOf(posicaoOrigem));
-        indicesValidos.add(posicaoDestino);
-    }
-
 
 }

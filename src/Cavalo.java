@@ -25,35 +25,39 @@ public class Cavalo extends Peca{
                     indice == posicaoTabuleiro + 6) {
 
                 //coluna H
-                if (validaExtremidade(posicaoTabuleiro + 1) &&(
-                        indice == posicaoTabuleiro - 15 ||
-                        indice == posicaoTabuleiro - 6 ||
-                        indice == posicaoTabuleiro + 17 ||
-                        indice == posicaoTabuleiro + 10)) {
-                    verificaPeca(posicao, possiveisMovimentos);
+                if (validaExtremidade(posicaoTabuleiro + 1)){
+                       if (!(indice == posicaoTabuleiro - 15 ||
+                                indice == posicaoTabuleiro - 6 ||
+                                indice == posicaoTabuleiro + 17 ||
+                                indice == posicaoTabuleiro + 10)){
+                        verificaPeca(posicao, possiveisMovimentos);
+                    }
                 }
 
                 //coluna A
-                else if (validaExtremidade(posicaoTabuleiro) && (
-                        indice == posicaoTabuleiro - 15 ||
-                                indice == posicaoTabuleiro - 6 ||
-                                indice == posicaoTabuleiro + 10 ||
-                                indice == posicaoTabuleiro + 17)) {
+                else if (validaExtremidade(posicaoTabuleiro)) {
+                        if (!(indice == posicaoTabuleiro + 15 ||
+                        indice == posicaoTabuleiro + 6 ||
+                        indice == posicaoTabuleiro - 17 ||
+                        indice == posicaoTabuleiro - 10)){
                     verificaPeca(posicao, possiveisMovimentos);
                 }
+            }
 
                 //coluna B
-                else if (validaExtremidade(posicaoTabuleiro - 1) && (
-                        indice == posicaoTabuleiro + 6 ||
+                else if (validaExtremidade(posicaoTabuleiro - 1)){
+                        if(!(indice == posicaoTabuleiro + 6 ||
                                 indice == posicaoTabuleiro - 10)) {
                     verificaPeca(posicao, possiveisMovimentos);
+                    }
                 }
 
                 //coluna G
-                else if (validaExtremidade(posicaoTabuleiro + 2) && (
-                        indice == posicaoTabuleiro - 15 ||
-                                indice == posicaoTabuleiro + 17)) {
-                    verificaPeca(posicao, possiveisMovimentos);
+                else if (validaExtremidade(posicaoTabuleiro + 2)){
+                        if(!(indice == posicaoTabuleiro - 15 ||
+                                indice == posicaoTabuleiro + 17)){
+                        verificaPeca(posicao, possiveisMovimentos);
+                    }
                 }
 
                 // não pertence a conta

@@ -14,30 +14,32 @@ public class Rei extends Peca{
         int posicaoTabuleiro = tabuleiro.getPosicao().indexOf(posicaoAtual);
         ArrayList<Posicao> possiveisMovimentos = new ArrayList<>();
 
-        for(Posicao posicao: tabuleiro.getPosicao()){
+        for(Posicao posicao: tabuleiro.getPosicao()) {
             int indice = tabuleiro.getPosicao().indexOf(posicao);
-            if(indice == posicaoTabuleiro -9 ||
-            indice == posicaoTabuleiro -8 ||
-                    indice == posicaoTabuleiro -7 ||
-                    indice == posicaoTabuleiro -1 ||
-                    indice == posicaoTabuleiro +1 ||
-                    indice == posicaoTabuleiro +7 ||
-                    indice == posicaoTabuleiro +8 ||
-                    indice == posicaoTabuleiro +9){
-
-            }
-            if (validaExtremidade(posicaoTabuleiro + 1) &&(
+            if (indice == posicaoTabuleiro - 9 ||
+                    indice == posicaoTabuleiro - 8 ||
                     indice == posicaoTabuleiro - 7 ||
-                            indice == posicaoTabuleiro - 1 ||
-                            indice == posicaoTabuleiro - 9 )) {
-                verificaPeca(posicao, possiveisMovimentos);
-            }
+                    indice == posicaoTabuleiro - 1 ||
+                    indice == posicaoTabuleiro + 1 ||
+                    indice == posicaoTabuleiro + 7 ||
+                    indice == posicaoTabuleiro + 8 ||
+                    indice == posicaoTabuleiro + 9) {
 
-            //coluna A
-            else if (validaExtremidade(posicaoTabuleiro) && (
-                    indice == posicaoTabuleiro - 9 ||
-                            indice == posicaoTabuleiro - 1 ||
-                            indice == posicaoTabuleiro + 7 )) {
+
+                if (validaExtremidade(posicaoTabuleiro + 1) && !(
+                        indice == posicaoTabuleiro - 7 ||
+                                indice == posicaoTabuleiro - 1 ||
+                                indice == posicaoTabuleiro - 9)) {
+                    verificaPeca(posicao, possiveisMovimentos);
+                }
+
+                //coluna A
+                else if (validaExtremidade(posicaoTabuleiro) && !(
+                        indice == posicaoTabuleiro - 9 ||
+                                indice == posicaoTabuleiro - 1 ||
+                                indice == posicaoTabuleiro + 7)) {
+                    verificaPeca(posicao, possiveisMovimentos);
+                }
                 verificaPeca(posicao, possiveisMovimentos);
             }
         }

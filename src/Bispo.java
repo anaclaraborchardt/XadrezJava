@@ -13,51 +13,31 @@ public class Bispo extends Peca{
         int posicaoTabuleiro = tabuleiro.getPosicao().indexOf(posicaoAtual);
         ArrayList<Posicao> possiveisMovimentos = new ArrayList<>();
 
-        //if ternario i=(posicaoTabuleiro%8 == 0?64:posicaoTabuleiro+ 7)
-        for(int i=(posicaoTabuleiro%8 == 0?
-                64:posicaoTabuleiro+ 7);
-            i<tabuleiro.getPosicao().size();
-            i += 7) {
-            if(verificaPeca(tabuleiro.getPosicao().get(i), possiveisMovimentos)
-                    || validaExtremidade(i) ){
-                break;
-            }
-        }
-        for(int i=((posicaoTabuleiro+1) %8 == 0? -1:posicaoTabuleiro -7); i>=tabuleiro.getPosicao().size(); i -= 7){
-            if(verificaPeca(tabuleiro.getPosicao().get(i +1), possiveisMovimentos)
-                    || validaExtremidade(i) ){
-                break;
-            }
-        }
-        for(int i=((posicaoTabuleiro +1)%8 == 0?64:posicaoTabuleiro+ 9); i<tabuleiro.getPosicao().size(); i += 9){
-            if(validaExtremidade(i+1) ||
-                    verificaPeca(tabuleiro.getPosicao().get(i + 1), possiveisMovimentos)){
 
-                break;
-            }
-        }
-        for(int i=(posicaoTabuleiro%8 == 0? -1:posicaoTabuleiro -9); i>= tabuleiro.getPosicao().size(); i -= 9){
-            if(
-            verificaPeca(tabuleiro.getPosicao().get(i), possiveisMovimentos)
-            || validaExtremidade(i) ){
-
-
+        for (int i = posicaoTabuleiro + 9; i % 8 != 0 && i < tabuleiro.getPosicao().size(); i += 9) {
+            if (verificaPeca(tabuleiro.getPosicao().get(i), possiveisMovimentos) || validaExtremidade(i)) {
                 break;
             }
         }
 
+        for (int i = posicaoTabuleiro + 7; (i + 1) % 8 != 0 && i < tabuleiro.getPosicao().size(); i += 7) {
+            if (verificaPeca(tabuleiro.getPosicao().get(i), possiveisMovimentos) || validaExtremidade(i)) {
+                break;
+            }
+        }
 
+        for (int i = posicaoTabuleiro - 7; i % 8 != 0 && i >= 0; i -= 7) {
+            if (verificaPeca(tabuleiro.getPosicao().get(i), possiveisMovimentos) || validaExtremidade(i)) {
+                break;
+            }
+        }
 
-//        for(Posicao posicao: tabuleiro.getPosicao()) {
-//            int cont = tabuleiro.getPosicao().indexOf(posicao);
-//                if((cont - posicaoTabuleiro) %7 == 0){
-//                    possiveisMovimentos.add(posicao);
-//
-//                }
-//            else if((cont - posicaoTabuleiro) %9 == 0) {
-//                possiveisMovimentos.add(posicao);
-//            }
-//        }
+        for (int i = posicaoTabuleiro - 9; (i + 1) % 8 != 0 && i >= 0; i -= 9) {
+            if (verificaPeca(tabuleiro.getPosicao().get(i), possiveisMovimentos) || validaExtremidade(i)) {
+                break;
+            }
+        }
+
         return possiveisMovimentos;
     }
 

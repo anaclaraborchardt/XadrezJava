@@ -10,6 +10,10 @@ public abstract class Peca {
         this.posicao = posicao;
     }
 
+    public Peca() {
+
+    }
+
     public boolean mover(Tabuleiro tabuleiro, Posicao posicao) {
         ArrayList<Posicao> possiveisPosicoes = possiveisMovimentos(tabuleiro);
         for (Posicao posicaoPossivel : possiveisPosicoes) {

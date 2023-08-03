@@ -8,6 +8,10 @@ public class Peao extends Peca{
         super(cor, posicao);
     }
 
+    public Peao() {
+        super();
+    }
+
     @Override
     public ArrayList<Posicao> possiveisMovimentos(Tabuleiro tabuleiro) {
         ArrayList<Posicao> possiveisMovimentos = new ArrayList<>();
@@ -20,9 +24,10 @@ public class Peao extends Peca{
         if (this.getCor().equals("Preto")) {
             if (posicoesTabuleiro.get(posicaoNoTabuleiro + 8).getPeca() == null) {
                 possiveisMovimentos.add(posicoesTabuleiro.get(posicaoNoTabuleiro + 8));
-                if (this.primeiroMovimento) {
+                if (isPrimeiroMovimento() == true) {
                     if (posicoesTabuleiro.get(posicaoNoTabuleiro + 16).getPeca() == null) {
                         possiveisMovimentos.add(posicoesTabuleiro.get(posicaoNoTabuleiro + 16));
+
                     }
                 }
             }
@@ -35,17 +40,21 @@ public class Peao extends Peca{
                 possiveisMovimentos.add(posicoesTabuleiro.get(posicaoNoTabuleiro + 7));
             }
         } else {
+
             if (posicoesTabuleiro.get(posicaoNoTabuleiro - 8).getPeca() == null) {
                 possiveisMovimentos.add(posicoesTabuleiro.get(posicaoNoTabuleiro - 8));
-                if (this.primeiroMovimento ) {
+                if (isPrimeiroMovimento() == true ) {
                     if (posicoesTabuleiro.get(posicaoNoTabuleiro - 16).getPeca() == null)
                         possiveisMovimentos.add(posicoesTabuleiro.get(posicaoNoTabuleiro - 16));
+                    //Após o primeiro movimento, ele não pode mais andar duas casas
                 }
             }
-            if (posicoesTabuleiro.get(posicaoNoTabuleiro - 9).getPeca()!=null && posicoesTabuleiro.get(posicaoNoTabuleiro - 9).getPeca().getCor().equals("Preto") && !validaExtremidade(posicaoNoTabuleiro)) {
+            if (posicoesTabuleiro.get(posicaoNoTabuleiro - 9).getPeca()!=null && posicoesTabuleiro.get(posicaoNoTabuleiro - 9)
+                    .getPeca().getCor().equals("Preto") && !validaExtremidade(posicaoNoTabuleiro)) {
                 possiveisMovimentos.add(posicoesTabuleiro.get(posicaoNoTabuleiro - 9));
             }
-            if (posicoesTabuleiro.get(posicaoNoTabuleiro - 7).getPeca()!=null && posicoesTabuleiro.get(posicaoNoTabuleiro - 7).getPeca().getCor().equals("Preto") && !validaExtremidade(posicaoNoTabuleiro+1)) {
+            if (posicoesTabuleiro.get(posicaoNoTabuleiro - 7).getPeca()!=null && posicoesTabuleiro.get(posicaoNoTabuleiro - 7)
+                    .getPeca().getCor().equals("Preto") && !validaExtremidade(posicaoNoTabuleiro+1)) {
                 possiveisMovimentos.add(posicoesTabuleiro.get(posicaoNoTabuleiro - 7));
             }
         }
@@ -62,5 +71,13 @@ public class Peao extends Peca{
     @Override
     public String getSimbolo() {
         return "P";
+    }
+
+    public boolean isPrimeiroMovimento() {
+        return primeiroMovimento;
+    }
+
+    public void setPrimeiroMovimento(boolean primeiroMovimento) {
+        this.primeiroMovimento = true;
     }
 }

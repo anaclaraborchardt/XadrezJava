@@ -21,7 +21,7 @@ public class Rainha extends Peca {
                 break;
             }
         }
-        for (int i = ((posicaoTabuleiro + 1) % 8 == 0 ? -1 : posicaoTabuleiro - 7); i >= tabuleiro.getPosicao().size(); i -= 7) {
+        for (int i = ((posicaoTabuleiro + 1) % 8 == 0 ? -1 : posicaoTabuleiro - 7); i >= 7; i -= 7) {
             if (verificaPeca(tabuleiro.getPosicao().get(i + 1), possiveisMovimentos)
                     || validaExtremidade(i)) {
                 break;
@@ -34,7 +34,7 @@ public class Rainha extends Peca {
                 break;
             }
         }
-        for (int i = (posicaoTabuleiro % 8 == 0 ? -1 : posicaoTabuleiro - 9); i >= tabuleiro.getPosicao().size(); i -= 9) {
+        for (int i = (posicaoTabuleiro % 8 == 0 ? -1 : posicaoTabuleiro - 9); i >= 9; i -= 9) {
             if (
                     verificaPeca(tabuleiro.getPosicao().get(i), possiveisMovimentos)
                             || validaExtremidade(i)) {
