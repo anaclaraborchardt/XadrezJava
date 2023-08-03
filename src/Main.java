@@ -37,7 +37,7 @@ public class Main {
                 if((escolhaPeca >= 8 && escolhaPeca <=15)||
                         ((escolhaPeca >= 48 && escolhaPeca <=55))
                 && peca instanceof Peao){
-                    Peao peao = new Peao();
+                    Peao peao = (Peao) peca;
                     peao.setPrimeiroMovimento(true);
                 }
 
