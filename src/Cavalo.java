@@ -76,6 +76,6 @@ public class Cavalo extends Peca{
 
     @Override
     public String getSimbolo() {
-        return "C";
+        return "C ";
     }
 }

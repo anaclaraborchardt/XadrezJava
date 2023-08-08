@@ -48,6 +48,6 @@ public class Bispo extends Peca{
 
     @Override
     public String getSimbolo() {
-        return "B";
+        return "B ";
     }
 }

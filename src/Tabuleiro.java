@@ -38,7 +38,7 @@ public class Tabuleiro {
     }
     public boolean imprimirTabuleiro() {
         String numerosLinhas = "  + 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 +";
-        String linhaDivisoria = "  +---+---+---+---+---+---+---+---+";
+        String linhaDivisoria = "  +----+----+----+----+----+----+----+----+";
 
         System.out.println(numerosLinhas);
         System.out.println(linhaDivisoria);
@@ -50,6 +50,8 @@ public class Tabuleiro {
                 String pecaSimbolo = " ";
                 if (listaPosicoes.get(j).temPeca()) {
                     pecaSimbolo = listaPosicoes.get(j).getPeca().getSimbolo();
+                } else {
+                    pecaSimbolo = Integer.toString(j); // Mostra o índice da posição
                 }
                 System.out.print("| " + pecaSimbolo + " ");
             }
@@ -57,7 +59,7 @@ public class Tabuleiro {
             System.out.println(linhaDivisoria);
             rowIndex--;
         }
-        return false;
+        return true;
     }
 
     public ArrayList<Posicao> getPosicao() {

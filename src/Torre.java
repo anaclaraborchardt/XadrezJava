@@ -63,6 +63,6 @@ public class Torre extends Peca{
     }
 
     public String getSimbolo(){
-        return "T";
+        return "T ";
     }
 }

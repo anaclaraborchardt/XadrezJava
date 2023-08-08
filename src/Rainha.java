@@ -93,6 +93,6 @@ public class Rainha extends Peca {
 
     @Override
     public String getSimbolo() {
-        return "Q";
+        return "Q ";
     }
 }

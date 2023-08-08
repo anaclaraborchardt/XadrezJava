@@ -61,12 +61,13 @@ public class Peao extends Peca{
     public String toString() {
         return "Peao{" +
                 "primeiroMovimento=" + primeiroMovimento +
+                "posicaoNoTabuleiro=" +
                 "} " + super.toString();
     }
 
     @Override
     public String getSimbolo() {
-        return "P";
+        return "P ";
     }
 
     public boolean isPrimeiroMovimento() {

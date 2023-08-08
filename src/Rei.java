@@ -56,6 +56,10 @@ public class Rei extends Peca{
 
     @Override
     public String getSimbolo() {
-        return "K";
+        return "K ";
+    }
+
+    public static void xequeMate(){
+
     }
 }
