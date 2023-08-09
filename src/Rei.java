@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Rei extends Peca{
 
@@ -41,6 +42,7 @@ public class Rei extends Peca{
                     verificaPeca(posicao, possiveisMovimentos);
                 }
                 verificaPeca(posicao, possiveisMovimentos);
+//                xequeMate(tabuleiro);
             }
         }
 
@@ -59,7 +61,15 @@ public class Rei extends Peca{
         return "K ";
     }
 
-    public static void xequeMate(){
-
-    }
+//    public static void xequeMate(Tabuleiro tabuleiro){
+//        Peca peca = null;
+//        ArrayList<Posicao> listaPosicoes = peca.possiveisMovimentos(tabuleiro);
+//        List<Posicao> movimentosRei = null ;
+//        Torre torre;
+//
+//        for(Posicao posicao: tabuleiro.getPosicao()) {
+//                movimentosRei.add(posicao);
+//                System.out.println(movimentosRei);
+//            }
+//        }
 }

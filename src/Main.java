@@ -27,7 +27,7 @@ public class Main {
                 System.out.println(jogador2.getPecas());
             }
             System.out.println(tabuleiro.imprimirTabuleiro());
-            menu();
+            partida();
 
         } while (!vitoria);
         System.out.println("Jogo acabou");
@@ -40,7 +40,15 @@ public class Main {
 
         do {
             System.out.println("Qual posição deseja mover? (Digite o índice da peça).");
+            System.out.println("Selecione o índice da peça ou digite:\n" +
+                    "[-1]  Propor Empate\n" +
+                    "[-2]  Desistir");
             int escolhaPeca = sc.nextInt();
+            if(escolhaPeca == -1){
+                proporEmpate();
+            }else if(escolhaPeca == -2){
+                desistir();
+            }
 
             peca = tabuleiro.getPosicao().get(escolhaPeca).getPeca();
 
@@ -136,6 +144,7 @@ public class Main {
                 case 1:
                     System.out.println("Jogo finalizado ");
                     vitoria = true;
+                    System.exit(0);
                     break;
                 case 2:
                     System.out.println("Continue o jogo. O empate não foi aceito");
@@ -146,24 +155,6 @@ public class Main {
     public static void desistir(){
         System.out.println("Jogador " + jogador + " desistiu da partida");
         System.exit(0);
-    }
-
-    public static void menu(){
-        int indice = 0;
-        System.out.println("Selecione a opção desejada:\n" +
-                "[1] - Escolher Peça\n" +
-                "[2] - Propor Empate\n" +
-                "[3] - Desistir");
-       indice= sc.nextInt();
-
-       if(indice == 1){
-           partida();
-       }else if(indice == 2){
-           proporEmpate();
-       }else if(indice == 3){
-            desistir();
-       }
-
     }
 
     public static void alternaJogador(){
