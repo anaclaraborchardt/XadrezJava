@@ -4,6 +4,8 @@ import java.util.List;
 public class Rei extends Peca{
 
     private boolean primeiroMovimento;
+    static List<Posicao> movimentosRei = null ;
+
 
     public Rei(String cor, Posicao posicao) {
         super(cor, posicao);
@@ -42,7 +44,6 @@ public class Rei extends Peca{
                     verificaPeca(posicao, possiveisMovimentos);
                 }
                 verificaPeca(posicao, possiveisMovimentos);
-//                xequeMate(tabuleiro);
             }
         }
 
@@ -63,13 +64,14 @@ public class Rei extends Peca{
 
 //    public static void xequeMate(Tabuleiro tabuleiro){
 //        Peca peca = null;
-//        ArrayList<Posicao> listaPosicoes = peca.possiveisMovimentos(tabuleiro);
-//        List<Posicao> movimentosRei = null ;
 //        Torre torre;
 //
 //        for(Posicao posicao: tabuleiro.getPosicao()) {
+//            if (peca instanceof Rei) {
+//                List<Posicao> movimentosRei = null ;
 //                movimentosRei.add(posicao);
 //                System.out.println(movimentosRei);
 //            }
 //        }
+//    }
 }

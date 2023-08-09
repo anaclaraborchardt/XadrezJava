@@ -77,4 +77,5 @@ public class Peao extends Peca{
     public void setPrimeiroMovimento(boolean primeiroMovimento) {
         this.primeiroMovimento = true;
     }
+
 }

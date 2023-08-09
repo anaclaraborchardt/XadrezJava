@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -8,10 +9,13 @@ public class Main {
     static boolean empate = false;
     static Scanner sc = new Scanner(System.in);
     static Tabuleiro tabuleiro = new Tabuleiro();
+    static List<Posicao> movimentosRei = null ;
+    static Peca peca = null;
 
     static Jogador jogador1 = new Jogador("Jorge", "Senh@123");
     static Jogador jogador2 = new Jogador("Wilson", "wilson");
     static Jogador jogadorAtual = jogador1;
+    private static Object Rei;
 
     public static void main(String[] args) {
 
@@ -34,19 +38,18 @@ public class Main {
 
     }
 
-    private static void partida(){
+    private static void partida() {
         boolean pecaValida;
-        Peca peca = null;
-
         do {
+
             System.out.println("Qual posição deseja mover? (Digite o índice da peça).");
             System.out.println("Selecione o índice da peça ou digite:\n" +
                     "[-1]  Propor Empate\n" +
                     "[-2]  Desistir");
             int escolhaPeca = sc.nextInt();
-            if(escolhaPeca == -1){
+            if (escolhaPeca == -1) {
                 proporEmpate();
-            }else if(escolhaPeca == -2){
+            } else if (escolhaPeca == -2) {
                 desistir();
             }
 
@@ -57,6 +60,8 @@ public class Main {
                             && peca instanceof Peao) {
                 Peao peao = (Peao) peca;
                 peao.setPrimeiroMovimento(true);
+
+                promoverPeca();
             }
 
             if (jogadorAtual.getPecas().contains(peca)) {
@@ -67,21 +72,57 @@ public class Main {
             }
 
         }
-        while (!pecaValida) ;
+        while (!pecaValida);
 
         ArrayList<Posicao> listaPosicoes = peca.possiveisMovimentos(tabuleiro);
         String posicoesMover = "\n";
         int indice = 0;
         for (Posicao posicao : listaPosicoes) {
+            if(jogador == 1){
+                for (Peca pecaAdversaria : jogador2.getPecas()) {
+                    if(tabuleiro.getPosicao().indexOf(posicao) == 4){
+                        ArrayList<Posicao> listaRei = pecaAdversaria.possiveisMovimentos(tabuleiro);
+                        for (Posicao movimentosRei : listaRei) {
+                            int pecaXeque;
+                            //adiciona que o possível movimento pode ser o rei
+                            pecaXeque = tabuleiro.getPosicao().indexOf(movimentosRei);
+                            if (pecaXeque == 4) {
+                                System.out.println("O rei estará em xeque");
+                            }
+                        }
+                    }
+                }
+
+            }else if(jogador == 2) {
+                for (Peca pecaAdversaria : jogador1.getPecas()) {
+                    if (tabuleiro.getPosicao().indexOf(posicao) == 4) {
+                        ArrayList<Posicao> listaRei = pecaAdversaria.possiveisMovimentos(tabuleiro);
+                        for (Posicao movimentosRei : listaRei) {
+                            int pecaXeque;
+                            //adiciona que o possível movimento pode ser o rei
+                            pecaXeque = tabuleiro.getPosicao().indexOf(movimentosRei);
+                            if (pecaXeque == 4) {
+                                System.out.println("O rei estará em xeque");
+                                alternaJogador();
+                            }
+                        }
+                    }
+                }
+            }
+
             posicoesMover += indice + "-" + posicao + " " + tabuleiro.getPosicao().indexOf(posicao) + "\n";
             indice++;
+
         }
 
         Posicao posicao;
 
         System.out.println("Digite para qual posição deseja ir");
+
+
         System.out.println(posicoesMover);
         int escolhaPosicao = sc.nextInt();
+
 
         //verifica se o índice escolhido é válido
         if (escolhaPosicao > (listaPosicoes.size()) - 1) {
@@ -93,7 +134,8 @@ public class Main {
             System.out.println(posicoes);
             jogador1.moverPeca(peca, posicao, tabuleiro, jogador2);
 
-            alternaJogador();
+                alternaJogador();
+
 
             validarVitoria(jogadorAtual);
             mostraVencedor(jogadorAtual);
@@ -164,6 +206,26 @@ public class Main {
         } else if (jogadorAtual == jogador2) {
             jogadorAtual = jogador1;
             jogador = 2;
+        }
+    }
+
+    public static void promoverPeca(){
+
+    }
+
+    public static void xequePecas(){
+
+    }
+
+    public static void xequeMate(Tabuleiro tabuleiro){
+        Peca peca = null;
+
+        for(Posicao posicao: tabuleiro.getPosicao()) {
+            if (peca instanceof Rei) {
+                movimentosRei = null ;
+                movimentosRei.add(posicao);
+                System.out.println(movimentosRei);
+            }
         }
     }
 
