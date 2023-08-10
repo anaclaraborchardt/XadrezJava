@@ -54,8 +54,8 @@ public class Cavalo extends Peca{
 
                 //coluna G
                 else if (validaExtremidade(posicaoTabuleiro + 2)){
-                        if(!(indice == posicaoTabuleiro - 15 ||
-                                indice == posicaoTabuleiro + 17)){
+                        if(!(indice == posicaoTabuleiro - 6 ||
+                                indice == posicaoTabuleiro + 10)){
                         verificaPeca(posicao, possiveisMovimentos);
                     }
                 }
