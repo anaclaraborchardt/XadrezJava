@@ -10,7 +10,7 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
     static Tabuleiro tabuleiro = new Tabuleiro();
     static Peca peca;
-    static  int pecaXeque;
+    static boolean xeque = false;
 
     static Jogador jogador1 = new Jogador("Jorge", "Senh@123");
     static Jogador jogador2 = new Jogador("Wilson", "wilson");
@@ -38,7 +38,7 @@ public class Main {
     }
 
     private static void partida() {
-        boolean pecaValida;
+        boolean pecaValida = false;
         do {
             if(peca!=null){
                 verificarMovimentoxeque(peca);
@@ -66,7 +66,14 @@ public class Main {
             }
 
             if (jogadorAtual.getPecas().contains(peca)) {
-                pecaValida = true;
+                if(xeque == false) {
+                    pecaValida = true;
+                }else{
+                    if(!(peca instanceof Rei)) {
+                        System.out.println("Rei em xeque! Você só pode movimentar seu rei");
+                        xeque = false;
+                    }
+                }
             } else {
                 System.out.println("Não é sua peça");
                 pecaValida = false;
@@ -82,10 +89,6 @@ public class Main {
         for (Posicao posicao : listaPosicoes) {
             verificarMovimentoxeque(peca);
 
-            if(pecaXeque == -1) {
-                System.out.println("Seu rei está em xeque");
-            }
-
             posicoesMover += indice + "-" + posicao + " " + tabuleiro.getPosicao().indexOf(posicao) + "\n";
             indice++;
 
@@ -97,7 +100,6 @@ public class Main {
 
         System.out.println(posicoesMover);
         int escolhaPosicao = sc.nextInt();
-
 
         //verifica se o índice escolhido é válido
         if (escolhaPosicao > (listaPosicoes.size()) - 1) {
@@ -189,31 +191,33 @@ public class Main {
     }
 
     public static void verificarMovimentoxeque(Peca peca){
-        pecaXeque();
         // se for o jogador 1, ele vai verificar o próximo movimento do jogador1
         ArrayList<Posicao> listaPosicoes = peca.possiveisMovimentos(tabuleiro);
 
         for (Posicao posicao : listaPosicoes) {
             if (jogador == 1) {
                 for (Peca pecaAdversaria : jogador2.getPecas()) {
-                    if (tabuleiro.getPosicao().indexOf(posicao) == 4) {
+                    if (posicao.getPeca() instanceof Rei) {
                         ArrayList<Posicao> listaRei = pecaAdversaria.possiveisMovimentos(tabuleiro);
-                        System.out.println("O rei estará em xeque");
+                        System.out.println("O rei está em xeque");
+                        xeque = true;
+
                     }
                 }
 
             } else if (jogador == 2) {
                 for (Peca pecaAdversaria : jogador1.getPecas()) {
-                    if (tabuleiro.getPosicao().indexOf(posicao) == 4) {
+                    if (posicao.getPeca() instanceof Rei) {
                         ArrayList<Posicao> listaRei = pecaAdversaria.possiveisMovimentos(tabuleiro);
-                        System.out.println("O rei estará em xeque");
+                        System.out.println("O rei está em xeque");
+                        xeque = true;
 
+                    }
                     }
                 }
             }
         }
 
-    }
 
     public static void xequeMate(Tabuleiro tabuleiro){
         Peca peca = null;
@@ -225,12 +229,7 @@ public class Main {
         }
     }
 
-    public static void pecaXeque(){
-        if(pecaXeque == -1){
-            System.out.println("xeque");
-        }
 
-    }
 
 
 }
