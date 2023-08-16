@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Main {
+public class Main<peca> {
 
     static boolean vitoria = false;
     static int jogador = 1;
@@ -11,6 +11,8 @@ public class Main {
     static Tabuleiro tabuleiro = new Tabuleiro();
     static Peca peca;
     static boolean xeque = false;
+    static int escolhaPosicao;
+    static int escolhaPeca;
 
     static Jogador jogador1 = new Jogador("Jorge", "Senh@123");
     static Jogador jogador2 = new Jogador("Wilson", "wilson");
@@ -48,7 +50,8 @@ public class Main {
             System.out.println("Selecione o índice da peça ou digite:\n" +
                     "[-1]  Propor Empate\n" +
                     "[-2]  Desistir");
-            int escolhaPeca = sc.nextInt();
+            escolhaPeca = sc.nextInt();
+
             if (escolhaPeca == -1) {
                 proporEmpate();
             } else if (escolhaPeca == -2) {
@@ -56,13 +59,8 @@ public class Main {
             }
             peca = tabuleiro.getPosicao().get(escolhaPeca).getPeca();
 
-            if ((escolhaPeca >= 8 && escolhaPeca <= 15) ||
-                    ((escolhaPeca >= 48 && escolhaPeca <= 55))
-                            && peca instanceof Peao) {
-                Peao peao = (Peao) peca;
-                peao.setPrimeiroMovimento(true);
-
-                promoverPeca();
+            if(peca instanceof Peao) {
+                    promoverPeca();
             }
 
             if (jogadorAtual.getPecas().contains(peca)) {
@@ -72,6 +70,8 @@ public class Main {
                     if(!(peca instanceof Rei)) {
                         System.out.println("Rei em xeque! Você só pode movimentar seu rei");
                         xeque = false;
+                    }else {
+                        pecaValida = true;
                     }
                 }
             } else {
@@ -97,9 +97,8 @@ public class Main {
         Posicao posicao;
 
         System.out.println("Digite para qual posição deseja ir");
-
         System.out.println(posicoesMover);
-        int escolhaPosicao = sc.nextInt();
+        escolhaPosicao = sc.nextInt();
 
         //verifica se o índice escolhido é válido
         if (escolhaPosicao > (listaPosicoes.size()) - 1) {
@@ -187,11 +186,38 @@ public class Main {
     }
 
     public static void promoverPeca(){
+        ArrayList<Posicao> listaPosicoes = peca.possiveisMovimentos(tabuleiro);
+        peca = tabuleiro.getPosicao().get(escolhaPeca).getPeca();
+        for(Posicao posicao : listaPosicoes) {
+            int indicePromocao = tabuleiro.getPosicao().indexOf(posicao);
+            if(jogadorAtual == jogador1) {
+                if ((escolhaPeca > 7) && (escolhaPeca <= 15)) {
+                    peca.promocaoPeca(tabuleiro, posicao);
+                System.out.println("Você pode mudar de peça\n" +
+                        "1- Rainha\n" +
+                        "2- Torre\n" +
+                        "3- Bispo\n" +
+                        "4- Cavalo\n");
+                int escolhaPromocao = sc.nextInt();
+
+                switch (escolhaPromocao) {
+                    case 1:
+                        break;
+                }
+                }
+            }else if(jogadorAtual == jogador2) {
+            if ((escolhaPeca > 47) && (escolhaPeca <= 55)) {
+                    System.out.println("Você pode mudar de peça");
+
+                }
+            }
+        }
 
     }
 
     public static void verificarMovimentoxeque(Peca peca){
         // se for o jogador 1, ele vai verificar o próximo movimento do jogador1
+
         ArrayList<Posicao> listaPosicoes = peca.possiveisMovimentos(tabuleiro);
 
         for (Posicao posicao : listaPosicoes) {
@@ -201,7 +227,6 @@ public class Main {
                         ArrayList<Posicao> listaRei = pecaAdversaria.possiveisMovimentos(tabuleiro);
                         System.out.println("O rei está em xeque");
                         xeque = true;
-
                     }
                 }
 
@@ -218,7 +243,6 @@ public class Main {
             }
         }
 
-
     public static void xequeMate(Tabuleiro tabuleiro){
         Peca peca = null;
 
@@ -228,8 +252,6 @@ public class Main {
             }
         }
     }
-
-
 
 
 }

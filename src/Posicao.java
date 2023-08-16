@@ -8,10 +8,10 @@ public class Posicao {
         return peca;
     }
 
+
     public void setPeca(Peca peca) {
         this.peca = peca;
     }
-
     public void moverPeca(Tabuleiro tabuleiro, Posicao posicao){
 
     }

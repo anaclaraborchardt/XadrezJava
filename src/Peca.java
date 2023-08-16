@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public abstract class Peca {
     private String cor;
     private Posicao posicao;
+    private Object Bispo;
 
     public Peca(String cor, Posicao posicao) {
 
@@ -15,8 +16,12 @@ public abstract class Peca {
     }
 
     public boolean mover(Tabuleiro tabuleiro, Posicao posicao) {
+
         ArrayList<Posicao> possiveisPosicoes = possiveisMovimentos(tabuleiro);
         for (Posicao posicaoPossivel : possiveisPosicoes) {
+            if(this instanceof Peao){
+                ((Peao) this).setPrimeiroMovimento(false);
+            }
             if (posicaoPossivel == posicao) {
                 //atribuindo a peça para a nova posição no tabuleiro
                 posicao.setPeca(this);
@@ -69,4 +74,22 @@ public abstract class Peca {
     }
 
     public abstract String getSimbolo();
+
+    public boolean promocaoPeca(Tabuleiro tabuleiro, Posicao posicao) {
+
+        ArrayList<Posicao> possiveisPosicoes = possiveisMovimentos(tabuleiro);
+        for (Posicao posicaoPossivel : possiveisPosicoes) {
+            if (posicaoPossivel == posicao) {
+                //atribuindo a peça para a nova posição no tabuleiro
+                posicao.setPeca(this);
+                //removendo a peça da posição anterior no tabuleiro
+                this.posicao.setPeca(null);
+                //Trocando a posição atual da peça
+                posicao = posicao;
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

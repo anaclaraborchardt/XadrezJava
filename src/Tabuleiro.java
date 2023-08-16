@@ -9,6 +9,8 @@ public class Tabuleiro {
             listaPosicoes.add(new Posicao());
             if (i >= 8 && i <= 15) {
                 listaPosicoes.get(i).setPeca(new Peao("Preto", listaPosicoes.get(i)));
+            } else if(i == 22){
+                listaPosicoes.get(i).setPeca(new Peao("Branco", listaPosicoes.get(i)));
             } else if (i >= 48 && i <= 55) {
                 listaPosicoes.get(i).setPeca(new Peao("Branco", listaPosicoes.get(i)));
             } else if (i == 0 || i == 7) {
