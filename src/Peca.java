@@ -77,19 +77,31 @@ public abstract class Peca {
 
     public boolean promocaoPeca(Tabuleiro tabuleiro, Posicao posicao) {
 
-        ArrayList<Posicao> possiveisPosicoes = possiveisMovimentos(tabuleiro);
-        for (Posicao posicaoPossivel : possiveisPosicoes) {
+        for (Posicao posicaoPossivel : tabuleiro.getPosicao()) {
             if (posicaoPossivel == posicao) {
                 //atribuindo a peça para a nova posição no tabuleiro
                 posicao.setPeca(this);
                 //removendo a peça da posição anterior no tabuleiro
                 this.posicao.setPeca(null);
                 //Trocando a posição atual da peça
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean tiraPeca(Tabuleiro tabuleiro, Posicao posicao) {
+
+        ArrayList<Posicao> possiveisPosicoes = possiveisMovimentos(tabuleiro);
+        for (Posicao posicaoPossivel : possiveisPosicoes) {
+            if (posicaoPossivel == posicao) {
+                this.posicao.setPeca(null);
                 posicao = posicao;
                 return true;
             }
         }
         return false;
     }
+
 
 }
