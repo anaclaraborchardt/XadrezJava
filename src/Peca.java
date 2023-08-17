@@ -37,7 +37,6 @@ public abstract class Peca {
 
     public boolean validaExtremidade(int posicaoTabuleiro){
         return posicaoTabuleiro %8 == 0;
-
     }
 
     public abstract ArrayList<Posicao> possiveisMovimentos(
