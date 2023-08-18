@@ -102,5 +102,7 @@ public abstract class Peca {
         return false;
     }
 
-
+    public void setPosicao(Posicao posicao) {
+        this.posicao = posicao;
+    }
 }

@@ -9,11 +9,9 @@ public class Tabuleiro {
             listaPosicoes.add(new Posicao());
             if (i >= 8 && i <= 15) {
                 listaPosicoes.get(i).setPeca(new Peao("Preto", listaPosicoes.get(i)));
-            }else if (i == 40){
+            }else if (i == 42){
                 listaPosicoes.get(i).setPeca(new Peao("Preto", listaPosicoes.get(i)));
-            } else if(i == 22){
-                listaPosicoes.get(i).setPeca(new Peao("Branco", listaPosicoes.get(i)));
-            } else if (i >= 48 && i <= 55) {
+            }else if (i >= 48 && i <= 55) {
                 listaPosicoes.get(i).setPeca(new Peao("Branco", listaPosicoes.get(i)));
             } else if (i == 0 || i == 7) {
                 listaPosicoes.get(i).setPeca(new Torre("Preto", listaPosicoes.get(i)));
@@ -23,9 +21,7 @@ public class Tabuleiro {
                 listaPosicoes.get(i).setPeca(new Cavalo("Preto", listaPosicoes.get(i)));
             } else if (i == 57 || i == 62) {
                 listaPosicoes.get(i).setPeca(new Cavalo("Branco", listaPosicoes.get(i)));
-            } else if (i == 31) {
-                listaPosicoes.get(i).setPeca(new Cavalo("Branco", listaPosicoes.get(i)));
-            } else if (i == 2 || i == 5) {
+            }else if (i == 2 || i == 5) {
                 listaPosicoes.get(i).setPeca(new Bispo("Preto", listaPosicoes.get(i)));
             } else if (i == 58 || i == 61) {
                 listaPosicoes.get(i).setPeca(new Bispo("Branco", listaPosicoes.get(i)));
