@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Peca {
     private String cor;
@@ -104,5 +105,9 @@ public abstract class Peca {
 
     public void setPosicao(Posicao posicao) {
         this.posicao = posicao;
+    }
+
+    public <peca> Posicao[] possiveisMovimentos(Main<peca> pecaMain) {
+        return new Posicao[0];
     }
 }

@@ -67,14 +67,14 @@ public class Main<peca> {
         while (!pecaValida);
 
         ArrayList<Posicao> movimentosValidos = new ArrayList<>();
-        
+
         for(Posicao posicao : peca.possiveisMovimentos(tabuleiro)){
             if(!verificaMovimento(peca, posicao)){
                 movimentosValidos.add(posicao);
             }
         }
-        
-        
+
+
         String posicoesMover = "\n";
         int indice = 0;
 
@@ -97,6 +97,9 @@ public class Main<peca> {
             System.out.println("Essa posição não é válida");
         } else {
             posicao = movimentosValidos.get(escolhaPosicao);
+            if(movimentosValidos.size() == 0){
+                System.out.println("Não há movimentos possíveis");
+            }
 
             if (peca instanceof Peao) {
                 promoverPeca();
@@ -105,21 +108,23 @@ public class Main<peca> {
             jogador1.moverPeca(peca, posicao, tabuleiro, jogador2);
 
             alternaJogador();
-            validarVitoria(jogadorAtual, jogadorAdversario);
+            validarVitoria(jogadorAdversario);
 
         }
     }
 
     private static boolean verificaMovimento(Peca peca, Posicao posicao){
+        //alterna entre o jogador atual e o adversario
         Jogador jogadorAdversario = jogadorAtual == jogador2 ? jogador1 : jogador2;
         Peca pecaTemp = posicao.getPeca();
         Posicao posicaoAtual = peca.getPosicao();
 
-        //novo mover
+        //novo mover = simulação do movimento
         posicao.setPeca(peca);
         peca.getPosicao().setPeca(null);
         peca.setPosicao(posicao);
 
+        //verifica se o movimento coloca o rei em xeque
         for(Peca pecaAdversaria: jogadorAdversario.getPecas()){
             if(pecaAdversaria != pecaTemp){
                 for(Posicao posicaoPossivel : pecaAdversaria.possiveisMovimentos(tabuleiro)) {
@@ -130,6 +135,7 @@ public class Main<peca> {
             }
         }
 
+        //volta ao estado anterior
         posicao.setPeca(pecaTemp);
         posicaoAtual.setPeca(peca);
         peca.setPosicao(posicaoAtual);
@@ -137,7 +143,10 @@ public class Main<peca> {
         //caso a peça esteja em xeque, ele retorna true
         if (xeque){
             System.out.println("Você está em xeque");
-            return false;
+            //aqui precisa voltar ao xeque = false, pois caso contrário,
+            //qualquer peça conseguirá executar o movimento
+            xeque = false;
+            return true;
         }
 
         //caso a peça não esteja em xeque, ele vai retornar false
@@ -146,7 +155,8 @@ public class Main<peca> {
         return false;
     }
 
-    private static void validarVitoria(Jogador jogadorAtual, Jogador jogadorAdversario) {
+    private static void validarVitoria(Jogador jogadorAdversario) {
+        //lista de boolean que irá retornar true or false
         ArrayList<Boolean> verificaXeque = new ArrayList<>();
         for(Peca pecaAdversario : jogadorAdversario.getPecas()){
             for(Posicao posicao : pecaAdversario.possiveisMovimentos(tabuleiro)){
@@ -168,7 +178,6 @@ public class Main<peca> {
             System.exit(0);
         }
     }
-
 
     public static void proporEmpate() {
         empate = true;
@@ -294,7 +303,3 @@ public class Main<peca> {
 
 
 }
-
-
-
-

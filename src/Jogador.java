@@ -52,4 +52,8 @@ public class Jogador {
         return pecas;
     }
 
+    public Rei getRei() {
+        Rei Rei = null;
+        return Rei;
+    }
 }

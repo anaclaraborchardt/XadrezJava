@@ -45,9 +45,9 @@ public class Tabuleiro {
         System.out.println(numerosLinhas);
         System.out.println(linhaDivisoria);
 
-        int rowIndex = 8;
+        int indexLinha = 8;
         for (int i = 0; i < 64; i += 8) {
-            System.out.print(rowIndex + " ");
+            System.out.print(indexLinha + " ");
             for (int j = i; j < i + 8; j++) {
                 String pecaSimbolo = " ";
                 if (listaPosicoes.get(j).temPeca()) {
@@ -59,7 +59,7 @@ public class Tabuleiro {
             }
             System.out.println("|");
             System.out.println(linhaDivisoria);
-            rowIndex--;
+            indexLinha--;
         }
         return true;
     }
